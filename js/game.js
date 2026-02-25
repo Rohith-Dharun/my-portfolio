@@ -399,6 +399,9 @@
     startBtn.addEventListener('click', startGame);
 
     window.addEventListener('keydown', (e) => {
+        // Ignore if typing in an input field (like the chatbot)
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
         if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' '].includes(e.key)) {
             if (isRunning) e.preventDefault();
         }
@@ -410,6 +413,8 @@
     });
 
     window.addEventListener('keyup', (e) => {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
         if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' '].includes(e.key)) {
             if (isRunning) e.preventDefault();
         }

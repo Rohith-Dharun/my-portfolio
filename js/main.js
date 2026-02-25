@@ -20,6 +20,7 @@
         intro: document.getElementById('introScreen'),
         main: document.getElementById('portfolioMain'),
         enterBtn: document.getElementById('enterBtn'),
+        navbar: document.getElementById('mainNavbar'),
         modeToggles: document.querySelector('.mode-toggles'),
         worldMap: document.querySelector('.world-map'),
         guide: document.getElementById('guideCharacter'),
@@ -156,6 +157,7 @@
             if (DOM.intro) DOM.intro.classList.add('hidden');
             if (DOM.main) DOM.main.style.opacity = '1';
             setTimeout(() => {
+                if (DOM.navbar) DOM.navbar.classList.add('visible');
                 if (DOM.modeToggles) DOM.modeToggles.classList.add('visible');
                 if (DOM.worldMap) DOM.worldMap.classList.add('visible');
                 if (DOM.guide) DOM.guide.classList.add('visible');
@@ -184,6 +186,11 @@
                         const dot = document.querySelector(`.map-dot[data-dest="${id}"]`);
                         if (dot) dot.classList.add('active');
                         updateBackgroundGradient(id);
+
+                        // Highlight active navbar link
+                        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                        const navLink = document.querySelector(`.nav-link[data-section="${id}"]`);
+                        if (navLink) navLink.classList.add('active');
                     }
                 }
             });
@@ -278,6 +285,27 @@
         });
     });
 
+    /* ---- SIDE VISUAL IMAGE 3D TILT ON HOVER ---- */
+    document.querySelectorAll('.side-visual-container').forEach(container => {
+        const img = container.querySelector('.side-visual-img');
+        if (!img) return;
+
+        container.addEventListener('mousemove', (e) => {
+            const rect = container.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = ((y - centerY) / centerY) * -6;
+            const rotateY = ((x - centerX) / centerX) * 6;
+            img.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.06) translateZ(20px)`;
+        });
+
+        container.addEventListener('mouseleave', () => {
+            img.style.transform = '';
+        });
+    });
+
     /* ---- SMOOTH NUMBER COUNTER FOR STATS ---- */
     function animateCounter(element, target, duration) {
         let start = 0;
@@ -293,6 +321,95 @@
         }
         requestAnimationFrame(step);
     }
+
+    /* ---- NAVBAR HAMBURGER & SCROLL ---- */
+    const navHamburger = document.getElementById('navHamburger');
+    const navLinks = document.querySelector('.nav-links');
+    const mainNavbar = document.getElementById('mainNavbar');
+
+    if (navHamburger && navLinks) {
+        navHamburger.addEventListener('click', () => {
+            navHamburger.classList.toggle('open');
+            navLinks.classList.toggle('open');
+        });
+
+        // Close mobile nav when a link is clicked
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navHamburger.classList.remove('open');
+                navLinks.classList.remove('open');
+            });
+        });
+    }
+
+    // Shrink navbar slightly on scroll
+    window.addEventListener('scroll', () => {
+        if (!mainNavbar) return;
+        if (window.scrollY > 50) {
+            mainNavbar.style.padding = '0 3%';
+            mainNavbar.style.background = 'rgba(250, 245, 239, 0.9)';
+            mainNavbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.05)';
+        } else {
+            mainNavbar.style.padding = '10px 3%';
+            mainNavbar.style.background = 'rgba(250, 245, 239, 0.75)';
+            mainNavbar.style.boxShadow = 'none';
+        }
+    }, { passive: true });
+
+    /* ---- BACKEND SERVICE ---- */
+    const API_BASE = 'http://127.0.0.1:5000/api';
+
+    async function initBackendFeatures() {
+        // 1. Visits
+        try {
+            const vRes = await fetch(`${API_BASE}/visits`, { method: 'POST' });
+            const vData = await vRes.json();
+            const counterEl = document.querySelector('#visitorCounter span');
+            if (counterEl) counterEl.textContent = `Visitors: ${vData.count}`;
+        } catch (e) { console.error("Visits API down"); }
+
+        // 2. Likes
+        try {
+            const lRes = await fetch(`${API_BASE}/likes`);
+            const lData = await lRes.json();
+            Object.keys(lData).forEach(pid => {
+                const countEl = document.querySelector(`.mission-card[data-project-id="${pid}"] .like-count`);
+                if (countEl) countEl.textContent = lData[pid];
+            });
+        } catch (e) { console.error("Likes API down"); }
+
+
+    }
+
+
+
+    // Like Click Handler
+    document.querySelectorAll('.like-btn').forEach(btn => {
+        btn.addEventListener('click', async function () {
+            if (this.classList.contains('liked')) return;
+
+            const card = this.closest('.mission-card');
+            const pid = card ? card.dataset.projectId : null;
+            if (!pid) return;
+
+            this.classList.add('animating');
+            try {
+                const res = await fetch(`${API_BASE}/likes/${pid}`, { method: 'POST' });
+                const data = await res.json();
+                this.querySelector('.like-count').textContent = data.like_count;
+                this.classList.add('liked');
+            } catch (e) {
+                console.error("Failed to like project");
+            } finally {
+                setTimeout(() => this.classList.remove('animating'), 500);
+            }
+        });
+    });
+
+
+
+    // Initialize backend features
+    initBackendFeatures();
 
     // Start Loops
     requestAnimationFrame(render);

@@ -183,7 +183,7 @@
                     body: JSON.stringify({
                         contents: [{
                             parts: [{
-                                text: `You are AVA, an AI assistant representing the software/hardware portfolio of Rohith Dharun S. Keep answers concise, extremely polite, and conversational (max 2 sentences). The user just said: "${msg}"`
+                                text: `You are AVA, an autonomous AI assistant representing the portfolio of Rohith Dharun S. Answer questions ABOUT Rohith in the third person (e.g., "He is an engineering aspirant..."). Keep answers concise, polite, and conversational (max 2 sentences). The user just said: "${msg}"`
                             }]
                         }]
                     })
@@ -262,27 +262,30 @@
         const q = query.toLowerCase();
 
         if (q.includes('hello') || q.includes('hi')) {
-            return "Greetings. I am AVA, Rohith's digital liaison. How may I assist your exploration of this portfolio today?";
+            return "Greetings. I am AVA, Rohith's digital AI assistant. How may I assist you today?";
+        }
+        if (q.includes('who is rohith') || q.includes('about rohith') || q.includes('who is he')) {
+            return "Rohith is a dedicated engineering aspirant with a passion for building innovative software and hardware solutions.";
         }
         if (q.includes('skill') || q.includes('power') || q.includes('software') || q.includes('hardware')) {
-            return "Rohith is proficient in modern software development (C, Java, Python) and hardware design (Arduino, Embedded Systems). You can view the details in Chapter III.";
+            return "He is proficient in modern software development (C, Java, Python) and hardware design (Arduino, Embedded Systems). You can view the details in the Skills chapter.";
         }
         if (q.includes('project') || q.includes('work') || q.includes('build')) {
-            return "He has built impressive systems like the RFID Attendance System and an autonomous Fire Fighting Robot. Chapter IV showcases these trials in detail.";
+            return "He has built impressive systems like the RFID Attendance System and an autonomous Fire Fighting Robot. The Projects chapter showcases these in detail.";
         }
         if (q.includes('game') || q.includes('play')) {
-            return "The Ocean Journey game in Chapter V illustrates his belief that creativity and interaction are vital to problem-solving. Have you tried surfing yet?";
+            return "The gaming module illustrates his belief that creativity and interaction are vital to problem-solving. Have you tried playing them yet?";
         }
         if (q.includes('contact') || q.includes('email') || q.includes('hire')) {
-            return "You can reach Rohith at rohithdharun1718@gmail.com. Further professional links are available in Chapter VI.";
+            return "You can reach Rohith at rohithdharun1718@gmail.com. Further professional links are available in the Contact chapter.";
         }
         if (q.includes('resume') || q.includes('cv')) {
             return "A comprehensive manifest of his journey is available for download in the final chapter.";
         }
         if (q.includes('who are you') || q.includes('ava') || q.includes('bot')) {
-            return "I am AVA, a conversational interface designed to guide you through Rohith's professional story. I symbolize the harmony of logic and interaction.";
+            return "I am AVA, an autonomous AI assistant designed to guide you through Rohith's professional story.";
         }
 
-        return "That is an interesting inquiry. While I process the nuances, might I suggest visiting the Trials chapter to see his technical executions?";
+        return "That is an interesting inquiry. As an AI assistant, I recommend exploring the portfolio sections above to learn more about his technical capabilities!";
     }
 })();

@@ -62,10 +62,29 @@
         <button id="enterBtn" class="enter-btn">Begin the Story</button>
     </div>
 
-    <!-- UI Overlay: Mode Toggles -->
-    <div class="mode-toggles">
-        <button id="recruiterToggle" class="mode-btn">Recruiter Mode</button>
-    </div>
+    <!-- Fixed Navigation Bar -->
+    <nav id="mainNavbar" class="main-navbar">
+        <div class="nav-inner">
+            <a href="#" class="nav-brand">
+                <span class="nav-brand-icon"><i class="fas fa-code"></i></span>
+                <span class="nav-brand-text">Rohith Dharun S</span>
+            </a>
+            <div class="nav-links">
+                <a href="#awakening" class="nav-link" data-section="awakening">Awakening</a>
+                <a href="#path" class="nav-link" data-section="path">Path</a>
+                <a href="#skills" class="nav-link" data-section="skills">Skills</a>
+                <a href="#trials" class="nav-link" data-section="trials">Projects</a>
+                <a href="#evolving" class="nav-link" data-section="evolving">Gaming</a>
+                <a href="#horizon" class="nav-link" data-section="horizon">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <button id="recruiterToggle" class="mode-btn nav-mode-btn">Recruiter Mode</button>
+            </div>
+            <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
 
     <!-- UI Overlay: World Map Nav -->
     <div class="world-map">
@@ -178,8 +197,14 @@
             <div class="story-card">
                 <span class="chapter-number">Chapter IV — Trials and Creations</span>
                 <h2>Visions Made Real</h2>
-                <div class="mission-card">
-                    <h3>RFID Attendance System</h3>
+                <div class="mission-card" data-project-id="project-1">
+                    <div class="mission-header">
+                        <h3>RFID Attendance System</h3>
+                        <button class="like-btn" title="Like Project">
+                            <i class="far fa-heart"></i>
+                            <span class="like-count">0</span>
+                        </button>
+                    </div>
                     <p>Automated tracking using RFID cards, Arduino, and web UI. Eliminated manual logging errors.</p>
                     <div class="mission-date">Oct 2025</div>
                     <div class="skill-pills">
@@ -189,8 +214,14 @@
                         <span class="tech-badge skill-pill">HTML</span>
                     </div>
                 </div>
-                <div class="mission-card">
-                    <h3>Fire Fighting Robot</h3>
+                <div class="mission-card" data-project-id="project-2">
+                    <div class="mission-header">
+                        <h3>Fire Fighting Robot</h3>
+                        <button class="like-btn" title="Like Project">
+                            <i class="far fa-heart"></i>
+                            <span class="like-count">0</span>
+                        </button>
+                    </div>
                     <p>Autonomous embedded system with flame sensors for detecting and extinguishing fires.</p>
                     <div class="mission-date">Sep 2025</div>
                     <div class="skill-pills">
@@ -236,6 +267,8 @@
             </div>
         </section>
 
+
+
         <!-- Chapter VI -->
         <section id="horizon" class="chapter fade-up scroll-reveal">
             <div class="story-card terminal-chapter">
@@ -259,8 +292,15 @@
                     <a href="https://github.com/Rohith-Dharun/Rohith-Dharun-S" target="_blank" class="social-link"
                         title="GitHub"><i class="fab fa-github"></i></a>
                 </div>
-                <div style="margin-top: 3rem; font-size:0.85rem; color:var(--text-faint);">
-                    &copy; 2026 Rohith Dharun S. The story continues.
+                <div class="footer-stats"
+                    style="margin-top: 3rem; display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                    <div id="visitorCounter" class="visitor-counter">
+                        <i class="fas fa-eye"></i>
+                        <span>Visitors: --</span>
+                    </div>
+                    <div style="font-size:0.85rem; color:var(--text-faint);">
+                        &copy; 2026 Rohith Dharun S. The story continues.
+                    </div>
                 </div>
             </div>
             <div class="side-visual-container right">
@@ -269,6 +309,8 @@
             </div>
         </section>
     </main>
+
+    <!-- 3D Interactive Companion -->
 
     <!-- Guide Character / AVA Companion Overlay -->
     <div id="guideCharacter" class="guide-character"
@@ -319,6 +361,7 @@
     <script src="js/main.js"></script>
     <script src="js/cursor.js"></script>
     <script src="js/three-bg.js"></script>
+    <script src="js/companion.js"></script>
     <script src="js/chatbot.js"></script>
     <script src="js/game.js"></script>
     <script>
