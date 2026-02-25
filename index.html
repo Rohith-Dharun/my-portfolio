@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en" class="loading-lock">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rohith Dharun S | Cinematic Portfolio</title>
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="loading-lock">
+    <!-- Background Layers -->
+    <div id="bg-gradient-layer"></div>
+    <div id="bg-particles"></div>
+    <canvas id="three-bg"
+        style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 1; pointer-events: none; opacity: 0.8;"></canvas>
+    <div id="bg-character-layer">
+        <!-- Minimalist Anime Silhouette SVG -->
+        <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMax meet">
+            <path fill="currentColor"
+                d="M50 15c-5 0-9 4-9 9 0 4 3 8 7 9-10 2-18 10-18 20v40h40V53c0-10-8-18-18-20 4-1 7-5 7-9 0-5-4-9-9-9z"
+                opacity="0.6" />
+            <circle fill="#fff" cx="46" cy="22" r="1" opacity="0.4" id="char-eye-l" />
+            <circle fill="#fff" cx="54" cy="22" r="1" opacity="0.4" id="char-eye-r" />
+        </svg>
+    </div>
+    <div class="parallax-layer">
+        <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path fill="rgba(138,154,123,0.3)" fill-opacity="1"
+                d="M0,160L48,144C96,128,192,96,288,106.7C384,117,480,171,576,165.3C672,160,768,96,864,96C960,96,1056,160,1152,176C1248,192,1344,160,1392,144L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+            </path>
+        </svg>
+    </div>
+
+    <!-- Cinematic Loader -->
+    <div id="loader" class="loader">
+        <div class="loader-kanji">旅</div>
+        <div class="loader-text">Loading Journey</div>
+        <div class="loader-bar-track">
+            <div id="loaderFill" class="loader-bar-fill"></div>
+        </div>
+    </div>
+
+    <!-- Prologue / Intro Screen -->
+    <div id="introScreen" class="intro-screen">
+        <div class="intro-chapter-label">Prologue</div>
+        <div class="intro-visual-hero">
+            <img src="assets/awakening.png" class="intro-visual-img" alt="Starting the Journey">
+            <div class="visual-overlay"></div>
+        </div>
+        <h1 class="intro-name">Rohith Dharun S</h1>
+        <div class="intro-tagline">Electronics & Communication Engineering</div>
+        <button id="enterBtn" class="enter-btn">Begin the Story</button>
+    </div>
+
+    <!-- UI Overlay: Mode Toggles -->
+    <div class="mode-toggles">
+        <button id="recruiterToggle" class="mode-btn">Recruiter Mode</button>
+    </div>
+
+    <!-- UI Overlay: World Map Nav -->
+    <div class="world-map">
+        <div class="map-dot" data-dest="awakening" data-label="I. Awakening"></div>
+        <div class="map-dot" data-dest="path" data-label="II. Path"></div>
+        <div class="map-dot" data-dest="skills" data-label="III. Skills"></div>
+        <div class="map-dot" data-dest="trials" data-label="IV. Trials"></div>
+        <div class="map-dot" data-dest="evolving" data-label="V. Mind"></div>
+        <div class="map-dot" data-dest="horizon" data-label="VI. Horizon"></div>
+    </div>
+
+    <!-- Main Story Content -->
+    <main id="portfolioMain" class="main-content" style="opacity: 0;">
+        <!-- Chapter I -->
+        <section id="awakening" class="chapter fade-up scroll-reveal">
+            <div class="story-card">
+                <span class="chapter-number">Chapter I — The Awakening</span>
+                <h2>The Spark of Curiosity</h2>
+                <p class="story-text">
+                    Every journey begins with a single question. For Rohith, it was the curiosity of how things work—not
+                    just on the surface, but deep within the silicon and code. This is where the narrative unfolds.
+                </p>
+                <div class="chapter-meta">Location: Government College of Engineering, Salem</div>
+            </div>
+            <div class="side-visual-container right">
+                <img src="assets/awakening.png" class="side-visual-img" alt="Awakening">
+                <div class="visual-overlay"></div>
+            </div>
+        </section>
+
+        <!-- Chapter II -->
+        <section id="path" class="chapter fade-up scroll-reveal">
+            <div class="story-card">
+                <span class="chapter-number">Chapter II — The Path of Learning</span>
+                <h2>Forging the Foundation</h2>
+                <p class="story-text">
+                    Academic excellence meets technical rigor. From achieving a 500/500 in SSLC to maintaining a CGPA of
+                    8.15 in Electronics & Communication Engineering, the path has been one of consistent growth.
+                </p>
+                <div class="education-block">
+                    <h4>BE — ECE (2023–2027)</h4>
+                    <p>Govt. College of Engineering, Salem. Deep diving into core electronics, microprocessors, and
+                        programming. Current CGPA: 8.15</p>
+                </div>
+                <div class="education-block">
+                    <h4>Smart India Hackathon (2025)</h4>
+                    <p>Finalist. Collaborated under pressure to architect real-world solutions.</p>
+                </div>
+                <div class="education-block">
+                    <h4>SSLC (2021)</h4>
+                    <p>Achieved a perfect score (100%), laying a strong analytical foundation.</p>
+                </div>
+            </div>
+            <div class="side-visual-container right">
+                <img src="assets/learning.png" class="side-visual-img" alt="Learning">
+                <div class="visual-overlay"></div>
+            </div>
+        </section>
+
+        <!-- Chapter III -->
+        <section id="skills" class="chapter fade-up scroll-reveal">
+            <div class="story-card">
+                <span class="chapter-number">Chapter III — Skill Mastery</span>
+                <h2>The Artisan's Toolkit</h2>
+                <div class="powers-grid">
+                    <div class="power-category">
+                        <h3>Software</h3>
+                        <p style="font-size: 0.9rem; color: var(--text-soft); margin-bottom: 1.5rem; line-height: 1.5;">
+                            Proficient in modern software development, from system-level programming to building
+                            versatile applications and web interfaces.
+                        </p>
+                        <div class="power-meter"><span class="label">C / C++</span>
+                            <div class="track">
+                                <div class="power-fill" data-width="90%"></div>
+                            </div>
+                        </div>
+                        <div class="power-meter"><span class="label">Java / Python</span>
+                            <div class="track">
+                                <div class="power-fill" data-width="85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="power-category">
+                        <h3>Hardware</h3>
+                        <p style="font-size: 0.9rem; color: var(--text-soft); margin-bottom: 1.5rem; line-height: 1.5;">
+                            Hands-on experience with embedded systems, microcontroller programming, and circuit design
+                            for projects.
+                        </p>
+                        <div class="power-meter"><span class="label">Embedded Systems</span>
+                            <div class="track">
+                                <div class="power-fill" data-width="80%"></div>
+                            </div>
+                        </div>
+                        <div class="power-meter"><span class="label">Microcontrollers</span>
+                            <div class="track">
+                                <div class="power-fill" data-width="75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="side-visual-container right">
+                <img src="assets/mastery.png" class="side-visual-img" alt="Mastery">
+                <div class="visual-overlay"></div>
+            </div>
+        </section>
+
+        <!-- Chapter IV -->
+        <section id="trials" class="chapter fade-up scroll-reveal">
+            <div class="story-card">
+                <span class="chapter-number">Chapter IV — Trials and Creations</span>
+                <h2>Visions Made Real</h2>
+                <div class="mission-card">
+                    <h3>RFID Attendance System</h3>
+                    <p>Automated tracking using RFID cards, Arduino, and web UI. Eliminated manual logging errors.</p>
+                    <div class="mission-date">Oct 2025</div>
+                    <div class="skill-pills">
+                        <span class="tech-badge skill-pill">Arduino</span>
+                        <span class="tech-badge skill-pill">RFID</span>
+                        <span class="tech-badge skill-pill">C++</span>
+                        <span class="tech-badge skill-pill">HTML</span>
+                    </div>
+                </div>
+                <div class="mission-card">
+                    <h3>Fire Fighting Robot</h3>
+                    <p>Autonomous embedded system with flame sensors for detecting and extinguishing fires.</p>
+                    <div class="mission-date">Sep 2025</div>
+                    <div class="skill-pills">
+                        <span class="tech-badge skill-pill">µC</span>
+                        <span class="tech-badge skill-pill">Embedded C</span>
+                        <span class="tech-badge skill-pill">Flame Sensors</span>
+                        <span class="tech-badge skill-pill">Motor Driver</span>
+                    </div>
+                </div>
+            </div>
+            <div class="side-visual-container right">
+                <img src="assets/creation.png" class="side-visual-img" alt="Creation">
+                <div class="visual-overlay"></div>
+            </div>
+        </section>
+
+        <!-- Chapter V — Gaming Zone -->
+        <section id="evolving" class="chapter fade-up scroll-reveal">
+            <div class="story-card gaming-zone">
+                <span class="chapter-number">Chapter V — Gaming Hub</span>
+                <h2>The Archive of Play</h2>
+                <p class="chapter-intro">
+                    Gaming is the ultimate bridge between logic and creativity. Choose a module below to begin your
+                    odyssey.
+                </p>
+                <div class="game-selection">
+                    <button class="game-btn active" data-game="ocean">Ocean Surf</button>
+                    <button class="game-btn" data-game="tetris">Block Stack</button>
+                    <button class="game-btn" data-game="platform">Hero Quest</button>
+                    <button class="game-btn" data-game="tanks">Iron Arena</button>
+                </div>
+                <div class="chapter-meta" style="margin-top: 2rem;">Theme: Flow, Persistence, Discovery</div>
+            </div>
+            <div class="side-visual-container right">
+                <div class="game-container">
+                    <canvas id="gameCanvas"></canvas>
+                    <div id="gameOverlay">
+                        <h3 id="gameTitle">Ready to Surf?</h3>
+                        <button id="startGame" class="cta-btn">Press Space to Start</button>
+                    </div>
+                    <div id="scoreLabel">0m</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter VI -->
+        <section id="horizon" class="chapter fade-up scroll-reveal">
+            <div class="story-card terminal-chapter">
+                <span class="chapter-number">Chapter VI — Beyond the Horizon</span>
+                <h2>The Next Blueprint</h2>
+                <p class="terminal-text">
+                    The journey doesn't end here; it simply transforms. Every project is a stepping stone toward
+                    designing intelligent systems that bridge the physical and digital worlds. The horizon is wide open.
+                </p>
+                <div class="cta-actions horizon-cta">
+                    <button id="resumeDownload" class="cta-btn manifest-btn">
+                        <i class="fas fa-file-download"></i>
+                        <span>Download Manifest</span>
+                    </button>
+                </div>
+                <div class="social-links centered">
+                    <a href="mailto:rohithdharun1718@gmail.com" class="social-link" title="Email"><i
+                            class="fas fa-envelope"></i></a>
+                    <a href="https://linkedin.com/in/rohith-dharun-s-97a866299" target="_blank" class="social-link"
+                        title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/Rohith-Dharun/Rohith-Dharun-S" target="_blank" class="social-link"
+                        title="GitHub"><i class="fab fa-github"></i></a>
+                </div>
+                <div style="margin-top: 3rem; font-size:0.85rem; color:var(--text-faint);">
+                    &copy; 2026 Rohith Dharun S. The story continues.
+                </div>
+            </div>
+            <div class="side-visual-container right">
+                <img src="assets/awakening.png" class="side-visual-img" alt="Horizon" style="transform: scaleX(-1);">
+                <div class="visual-overlay"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Guide Character / AVA Companion Overlay -->
+    <div id="guideCharacter" class="guide-character"
+        style="position:fixed; bottom:30px; left:30px; z-index:900; opacity:0; transition:0.5s; pointer-events:auto;">
+        <div id="guideSpeech" class="guide-speech"
+            style="position:absolute; bottom:100%; left:50%; width:max-content; max-width:200px; padding:10px 15px; background:var(--bg-card); backdrop-filter:blur(10px); border:1px solid var(--border-soft); border-radius:var(--radius-md); border-bottom-left-radius:0; font-size:0.85rem; color:var(--text-soft); box-shadow:0 4px 16px rgba(0,0,0,0.05); opacity:0; transform:translateY(10px); transition:0.3s; pointer-events:none;">
+            I am AVA.
+        </div>
+        <div
+            style="width:70px; height:70px; background:var(--accent-warm); border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:2rem; box-shadow:0 8px 24px rgba(181,168,155,0.4);">
+            <i class="fas fa-hat-wizard"></i>
+        </div>
+    </div>
+
+    <!-- Chatbot Interface -->
+    <div id="chatWindow" class="chat-window">
+        <div class="chat-header">
+            <div class="msg-avatar bot"><i class="fas fa-robot"></i></div>
+            <span>AVA Interface</span>
+        </div>
+        <div id="chatMessages" class="chat-messages">
+            <div class="msg-wrapper bot">
+                <div class="msg-avatar bot"><i class="fas fa-robot"></i></div>
+                <div class="msg-bubble bot">Hello! I'm AVA, Rohith's portfolio guide. How can I help you explore his
+                    journey today?</div>
+            </div>
+        </div>
+        <div class="chat-input-area">
+            <button id="micToggle" class="mic-btn"><i class="fas fa-microphone"></i></button>
+            <input type="text" id="chatInput" placeholder="Ask about skills, projects, etc...">
+            <button id="chatSend" class="chat-send"><i class="fas fa-paper-plane"></i></button>
+        </div>
+        <div id="voiceWave" class="voice-wave" style="position: absolute; bottom: 65px; left: 20px;">
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+        </div>
+    </div>
+
+    <!-- Chat Toggle Button -->
+    <button id="chatToggle" class="chat-toggle">
+        <i class="fas fa-comment-alt"></i>
+        <div class="notification-dot"></div>
+    </button>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/cursor.js"></script>
+    <script src="js/three-bg.js"></script>
+    <script src="js/chatbot.js"></script>
+    <script src="js/game.js"></script>
+    <script>
+        // Placeholder for resume download (replace with actual file URL)
+        document.getElementById('resumeDownload')?.addEventListener('click', () => {
+            window.open('path/to/your/resume.pdf', '_blank');
+        });
+
+        // Placeholder for recruiter mode toggle
+        document.getElementById('recruiterToggle')?.addEventListener('click', () => {
+            document.body.classList.toggle('recruiter-mode');
+            console.log('Recruiter mode toggled');
+        });
+    </script>
+</body>
+
+</html>
